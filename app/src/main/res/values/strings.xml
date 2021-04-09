@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CM21</string>
+    <string name="app_name">CitizenCity</string>
     <string name="add_word">add_word</string>
     <string name="add_Nota">Add city</string>
     <string name="empty_not_saved">Nota vazia: não inserida</string>

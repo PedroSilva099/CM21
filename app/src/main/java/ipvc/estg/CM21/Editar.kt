@@ -16,8 +16,11 @@ class Editar : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar)
+
         val id = getIntent().getIntExtra("id",0)
+
         val titulo = getIntent().getStringExtra("titulo")
+
         val descricao = getIntent().getStringExtra("descricao")
 
 
@@ -29,8 +32,6 @@ class Editar : AppCompatActivity() {
 
 
         notaViewModel = ViewModelProvider(this).get(NotaViewModel::class.java)
-
-
 
 
 

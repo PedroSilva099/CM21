@@ -26,17 +26,6 @@ public abstract class NotaRoomDatabase : RoomDatabase() {
                 scope.launch {
                     var NotaDao = database.NotaDao()
 
-                    // Delete all content here.
-                    /*notaDao.deleteAll()
-
-                    // Add sample cities.
-                    var nota = Nota(1, "Viana do Castelo", "Portugal")
-                    notaDao.insert(nota)
-                    nota = Nota(2, "Porto", "Portugal")
-                    notaDao.insert(nota)
-                    nota = Nota(3, "Aveiro", "Portugal")
-                    notaDao.insert(nota)*/
-
                 }
             }
         }
