@@ -17,6 +17,8 @@ import ipvc.estg.CM21.viewModel.NotaViewModel
 
 class MainActivity : AppCompatActivity(), NotaAdapter.OnNotaClickListener {
 
+
+    
     private lateinit var notaViewModel: NotaViewModel
     private val newNotaActivityRequestCode = 1
 

@@ -8,4 +8,5 @@
     <string name="mensagem_apagar">Deseja apagar esta nota ?</string>
     <string name="sim">sim</string>
     <string name="nao">nao</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
