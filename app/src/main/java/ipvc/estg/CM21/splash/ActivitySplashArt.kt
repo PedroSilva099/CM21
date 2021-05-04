@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ipvc.estg.CM21.R
 import ipvc.estg.CM21.MainActivity
+import ipvc.estg.CM21.MainLogin
+import ipvc.estg.CM21.MapsActivity
 import java.lang.Exception
 
 class ActivitysplashArt : AppCompatActivity() {
@@ -20,7 +22,7 @@ class ActivitysplashArt : AppCompatActivity() {
                 try {
                     Thread.sleep(3000)
 
-                    val intent= Intent(baseContext, MainActivity::class.java)
+                    val intent= Intent(baseContext, MainLogin::class.java)
                     startActivity(intent)
 
                 }catch (e:Exception){
