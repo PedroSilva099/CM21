@@ -1,7 +1,7 @@
 package ipvc.estg.CM21.api
 
-data class Report (
-        val id: Int?,
+data class ReportMarker (
+
         val titulo: String,
         val descricao: String,
         val image: String,
@@ -9,5 +9,4 @@ data class Report (
         val longitude: String,
         val user_id: String,
         val type_id: String
-
 )

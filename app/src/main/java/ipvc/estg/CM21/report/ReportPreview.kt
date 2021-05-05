@@ -16,7 +16,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ReportPreview : AppCompatActivity() {
-
+/*
     private lateinit var ocorrencia: List<Report>
     private lateinit var desc: TextView
     private lateinit var tit: TextView
@@ -67,6 +67,6 @@ class ReportPreview : AppCompatActivity() {
             }
         })
     }
-
+*/
 }
 

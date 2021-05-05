@@ -24,7 +24,7 @@ import ipvc.estg.CM21.api.User
 import ipvc.estg.CM21.report.AddReport
 import ipvc.estg.CM21.report.ReportPreview
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var users: List<User>
@@ -59,21 +59,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
 
-
-
-
-
-
-
-
-        //added to implement location periodic updates
         locationCallBack = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
                 super.onLocationResult(p0)
                 lastLocation = p0.lastLocation
                 var loc = LatLng(lastLocation.latitude, lastLocation.longitude)
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 15.0f))
-                //findViewById<TextView>(R.id.txtcoordenadas).setText("Lat: " + loc.latitude + " - Long: " + loc.longitude)
+                findViewById<TextView>(R.id.txtcoordenadas).setText("Lat: " + loc.latitude + " - Long: " + loc.longitude)
                 Log.d("**** ANDRE", "new location received - " + loc.latitude + " - " + loc.longitude)
             }
 
@@ -85,7 +77,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val fab = findViewById<FloatingActionButton>(R.id.fab2)
         fab.setOnClickListener {
             val intent = Intent(this@MapsActivity, AddReport::class.java)
+            intent.putExtra("id", iduser)
             startActivityForResult(intent, newWordActivityRequestCode)
+
         }
     }
 
@@ -101,10 +95,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-        /*val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))*/
+        if (ActivityCompat.checkSelfPermission(
+                        this,
+                        android.Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                    LOCATION_PERMISSION_REQUEST_CODE
+            )
+
+            return
+        } else {
+            mMap.isMyLocationEnabled = true
+        }
+
+        mMap.setOnInfoWindowClickListener(this)
 
         setUpMap()
     }
@@ -166,6 +173,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onResume()
         startLocationUpdates()
         Log.d("**** ANDRE", "onResume - startLocationUpdates")
+    }
+
+    override fun onInfoWindowClick(p0: Marker?) {
+        TODO("Not yet implemented")
     }
 
 }

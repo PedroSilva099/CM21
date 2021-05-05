@@ -3,5 +3,5 @@ package ipvc.estg.CM21.api
 data class Tipo (
 
         val id: Int,
-        val tipo: String
+        val type_name: String
         )
