@@ -3,6 +3,7 @@
     <string name="add_word">add_word</string>
     <string name="add_Nota">Add city</string>
     <string name="empty_not_saved">Nota vazia: não inserida</string>
+    <string name="vazio">Report não inserido</string>
     <string name="insertnota">Insira Nota</string>
     <string name="apagar_nota">"Apagar Nota "</string>
     <string name="mensagem_apagar">Deseja apagar esta nota ?</string>

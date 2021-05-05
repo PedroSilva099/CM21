@@ -15,23 +15,28 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.Marker
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ipvc.estg.CM21.api.EndPoints
+import ipvc.estg.CM21.api.Report
 import ipvc.estg.CM21.api.ServiceBuilder
 import ipvc.estg.CM21.api.User
 import ipvc.estg.CM21.report.AddReport
+import ipvc.estg.CM21.report.ReportPreview
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var users: List<User>
+    private lateinit var iduser: String
+    private lateinit var ocorrencia: List<Report>
 
     private lateinit var lastLocation: Location
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private lateinit var locationCallBack: LocationCallback
     private lateinit var locationRequest: LocationRequest
+
 
     private  var newWordActivityRequestCode = 1
 
@@ -43,11 +48,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        iduser = intent.getStringExtra("id").toString()
+
+
+
         val request = ServiceBuilder.buildService(EndPoints::class.java)
         val call = request.getUsers()
         var position: LatLng
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+
+
+
+
+
+
+
 
         //added to implement location periodic updates
         locationCallBack = object : LocationCallback() {
@@ -91,6 +108,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         setUpMap()
     }
+
+
 
     fun setUpMap() {
 

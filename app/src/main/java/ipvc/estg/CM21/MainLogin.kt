@@ -40,6 +40,9 @@ class MainLogin : AppCompatActivity() {
         val button2 = findViewById<Button>(R.id.btn_log_in)
         button2.setOnClickListener{
             login()
+
+
+
         }
 
         user = findViewById(R.id.username)
@@ -62,16 +65,22 @@ class MainLogin : AppCompatActivity() {
             call.enqueue(object :Callback<Iflogin> {
                 override fun onResponse(call: Call<Iflogin>, response: Response<Iflogin>) {
                     if (response.isSuccessful) {
-                        Log.d("MACHAS", "DEUU")
+
                         val safe : Iflogin=response.body()!!
                         Toast.makeText(this@MainLogin,safe.MSG,Toast.LENGTH_SHORT).show()
+
+                        if (safe.status == true ) {
+                            val intent = Intent(this@MainLogin, MapsActivity::class.java)
+                            intent.putExtra("id", safe.id)
+                            startActivity(intent)
+                        }
+
                     }
 
                 }
 
                 override fun onFailure(call: Call<Iflogin>, t: Throwable) {
                     Toast.makeText(this@MainLogin,"${t.message}",Toast.LENGTH_SHORT).show()
-                    Log.d("MACHAS", t.toString())
                 }
             })
         }
