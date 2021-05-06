@@ -12,7 +12,7 @@ interface EndPoints {
     @GET("utilizador")
     fun getUsers(): Call<List<User>>
 
-    @GET("report")
+    @GET("allReports")
     fun getReports(): Call<List<Report>>
 
     @FormUrlEncoded
@@ -25,8 +25,8 @@ interface EndPoints {
     @Multipart
     @POST("addReport")
     fun addRep(
-            @Part("title") title: RequestBody,
-            @Part("description") description: RequestBody,
+            @Part("titulo") titulo: RequestBody,
+            @Part("descricao") descricao: RequestBody,
             @Part("latitude") latitude: RequestBody,
             @Part("longitude") longitude: RequestBody,
             @Part image: MultipartBody.Part,

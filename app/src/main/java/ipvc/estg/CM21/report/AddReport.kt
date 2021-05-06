@@ -156,39 +156,32 @@ class AddReport : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     fun addRep(){
-
         sharedPreferences = getSharedPreferences(getString(R.string.spf), Context.MODE_PRIVATE)
-
-        val id_user: Int = sharedPreferences.getInt(R.string.id_sh.toString(), 0)
+        val user_id: Int = sharedPreferences.getInt(R.string.id_sh.toString(), 0)
 
         val imgBitmap: Bitmap = findViewById<ImageView>(R.id.imageView).drawable.toBitmap()
         val imageFile: File = convertBitmapToFile("file", imgBitmap)
         val imgFileRequest: RequestBody = RequestBody.create(MediaType.parse("image/*"), imageFile)
         val image: MultipartBody.Part = MultipartBody.Part.createFormData("image", imageFile.name, imgFileRequest)
 
-
-        val titulo: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), title.toString())
-        val descricao: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), description.toString())
-        val latitude: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), lastLocation.latitude.toString())
-
-        val longitude: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), lastLocation.longitude.toString())
+        val titulo: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), title.text.toString())
+        val descricao: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), description.text.toString())
         val type: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), spinner.selectedItem.toString())
-
-
+        val latitude: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), lastLocation.latitude.toString())
+        val longitude: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), lastLocation.longitude.toString())
 
         val request = ServiceBuilder.buildService(EndPoints::class.java)
-        val call = request.addRep(titulo, descricao, latitude, longitude, image, id_user, spinner.selectedItemPosition + 1 )
+        val call = request.addRep(titulo, descricao, latitude, longitude, image, user_id, spinner.selectedItemPosition + 1)
 
         call.enqueue(object : Callback<ReportMarker> {
             override fun onResponse(call: Call<ReportMarker>, response: Response<ReportMarker>) {
-                Log.d("CALL", response.toString())
+
                 if(response.isSuccessful){
-                    //val c: OutputPost = response.body()!!
+
                     Toast.makeText(applicationContext, R.string.saved, Toast.LENGTH_LONG).show()
-                    Log.d("ANDRE", "Report Enviado para BD")
+
                     val intent = Intent(this@AddReport, MapsActivity::class.java)
-                    //verificar na stack de atividades se já existe esta atividade
-                    //se existir limpa e cria de novo
+
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
                     finish()
@@ -197,7 +190,6 @@ class AddReport : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
             override fun onFailure(call: Call<ReportMarker>, t: Throwable) {
                 Toast.makeText(applicationContext, "${t.message}", Toast.LENGTH_SHORT).show()
-                Log.d("ANDRE", t.message.toString())
             }
         })
     }

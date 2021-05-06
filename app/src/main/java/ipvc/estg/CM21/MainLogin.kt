@@ -70,6 +70,12 @@ class MainLogin : AppCompatActivity() {
                         Toast.makeText(this@MainLogin,safe.MSG,Toast.LENGTH_SHORT).show()
 
                         if (safe.status == true ) {
+                            val sharedPreferences = getSharedPreferences(getString(R.string.spf), Context.MODE_PRIVATE)
+                            with(sharedPreferences.edit()) {
+                                putInt(R.string.id_sh.toString(), safe.id)
+                                commit()
+
+                            }
                             val intent = Intent(this@MainLogin, MapsActivity::class.java)
                             intent.putExtra("id", safe.id)
                             startActivity(intent)
