@@ -74,6 +74,7 @@ class MainLogin : AppCompatActivity() {
                             with(sharedPreferences.edit()) {
                                 putInt(R.string.id_sh.toString(), safe.id)
                                 commit()
+                                finish()
 
                             }
                             val intent = Intent(this@MainLogin, MapsActivity::class.java)

@@ -8,6 +8,7 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -21,6 +22,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ipvc.estg.CM21.api.EndPoints
 import ipvc.estg.CM21.api.Report
@@ -34,10 +36,14 @@ import retrofit2.Response
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
+
     private lateinit var mMap: GoogleMap
     private lateinit var users: List<User>
     private lateinit var iduser: String
     private lateinit var report: List<Report>
+
+
+    private var click = false
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -72,7 +78,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
         sharedPreferences =
                 getSharedPreferences(getString(R.string.spf), Context.MODE_PRIVATE)
         val id = sharedPreferences.getInt(R.string.id_sh.toString(), 0)
-        val loc = Location("dummyprovider")
+        val loc = Location("teste")
         call.enqueue(object : Callback<List<Report>> {
             override fun onResponse(
                     call: Call<List<Report>>,
@@ -81,12 +87,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
                 if (response.isSuccessful) {
                     report = response.body()!!
                     for (rep in report) {
-                        val dist = calculateDistance(loc.latitude, loc.longitude, rep.latitude.toDouble(), rep.longitude.toDouble())
+
                         if (id == rep.user_id) {
                             position = LatLng(rep.latitude.toDouble(), rep.longitude.toDouble())
                             mMap.addMarker(
                                     MarkerOptions().position(position)
-                                            .title(rep.titulo + " - " + rep.descricao + " -- " + "a " + dist + " metros").icon(
+                                            .title(rep.titulo + " - " + rep.descricao ).icon(
                                                     BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
                                             )
                             )
@@ -94,7 +100,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
                             position = LatLng(rep.latitude.toDouble(), rep.longitude.toDouble())
                             mMap.addMarker(
                                     MarkerOptions().position(position)
-                                            .title(rep.titulo + " - " + rep.descricao + " -- " + "a " + dist + " metros").icon(
+                                            .title(rep.titulo + " - " + rep.descricao).icon(
                                                     BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)
                                             )
                             )
@@ -117,7 +123,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
               //  mMap.addMarker(MarkerOptions().position(loc).title("Marker"))
                 // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 15.0f))
                 findViewById<TextView>(R.id.txtcoordenadas).setText("Lat: " + loc.latitude + " - Long: " + loc.longitude)
-                Log.d("**** ANDRE", "new location received - " + loc.latitude + " - " + loc.longitude)
+
             }
 
         }
@@ -125,14 +131,76 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
         //request creation
         createLocationRequest()
 
-        val fab = findViewById<FloatingActionButton>(R.id.fab2)
-        fab.setOnClickListener {
+
+
+        val fabLocation = findViewById<FloatingActionButton>(R.id.fab2)
+        fabLocation.visibility = View.GONE
+        fabLocation.setOnClickListener {
             val intent = Intent(this@MapsActivity, AddReport::class.java)
-            intent.putExtra("id", iduser)
             startActivityForResult(intent, newWordActivityRequestCode)
 
         }
+
+
+        val fabLista = findViewById<FloatingActionButton>(R.id.reportList)
+        fabLista.visibility = View.GONE
+        fabLista.setOnClickListener {
+            val intent = Intent(this@MapsActivity, AddReport::class.java)
+            startActivityForResult(intent, newWordActivityRequestCode)
+
+        }
+
+        val fabNotas = findViewById<FloatingActionButton>(R.id.notasFab)
+        fabNotas.visibility = View.GONE
+        fabNotas.setOnClickListener {
+            val intent = Intent(this@MapsActivity, MainActivity::class.java)
+            startActivityForResult(intent, newWordActivityRequestCode)
+
+        }
+
+        val fabLogout = findViewById<FloatingActionButton>(R.id.logout)
+        fabLogout.visibility = View.GONE
+        fabLogout.setOnClickListener {
+            val editor: SharedPreferences.Editor= sharedPreferences.edit()
+            editor.clear()
+            editor.commit()
+            editor.apply()
+            val intent = Intent(this@MapsActivity, MainLogin::class.java)
+            startActivity(intent)
+
+        }
+
+               val fab5 = findViewById<ExtendedFloatingActionButton>(R.id.add_fab)
+               fab5.shrink()
+               fab5.setOnClickListener {
+                   if (!click){
+                       fabLogout.visibility = View.VISIBLE
+                       fabLocation.visibility = View.VISIBLE
+                       fabLista.visibility = View.VISIBLE
+                       fabNotas.visibility = View.VISIBLE
+
+                       fab5.extend()
+                       click = true
+                   } else {
+
+                       fabLogout.visibility = View.GONE
+                       fabLocation.visibility = View.GONE
+                       fabLista.visibility = View.GONE
+                       fabNotas.visibility = View.GONE
+
+                       fab5.shrink()
+                       click = false
+                   }
+
+               }
+
+
+
+
+
     }
+
+
 
     /**
      * Manipulates the map once available.
@@ -176,12 +244,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
     }
 */
 
-    fun calculateDistance(lat1: Double, lng1: Double, lat2: Double, lng2: Double): Float {
-        val results = FloatArray(1)
-        Location.distanceBetween(lat1, lng1, lat2, lng2, results)
-        // distance in meter
-        return results[0]
-    }
+
 
 
 
@@ -233,13 +296,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
     override fun onPause() {
         super.onPause()
         fusedLocationClient.removeLocationUpdates(locationCallBack)
-        Log.d("**** ANDRE", "onPause - removeLocationUpdates")
     }
 
     public override fun onResume() {
         super.onResume()
         startLocationUpdates()
-        Log.d("**** ANDRE", "onResume - startLocationUpdates")
     }
 
     override fun onInfoWindowClick(p0: Marker?) {
