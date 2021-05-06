@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">CitizenCity</string>
+    <string name="spf">Shared Preferences File</string>
+    <string name="id_sh" translatable="false">id</string>
+    <string name="add_Nota">Adicionar uma nota</string>
+    <string name="empty_not_saved">Nota vazia: não inserida</string>
+    <string name="select">Selecionar imagem</string>
+    <string name="voltar">Voltar</string>
+    <string name="vazio">Problema não inserido</string>
+    <string name="saved">Guardado</string>
+    <string name="titulo">Titulo</string>
+    <string name="descricao">Descrição</string>
+    <string name="utilizador">Utilizador</string>
+    <string name="pass">Palavra-Passe</string>
+    <string name="entrar">Entrar</string>
+    <string name="notas">Notas</string>
+    <string name="acoes">Ações</string>
+    <string name="insertnota">Insira Nota</string>
+    <string name="apagar_nota">"Apagar Nota "</string>
+    <string name="mensagem_apagar">Deseja apagar esta nota ?</string>
+    <string name="sim">sim</string>
+    <string name="nao">nao</string>
+    <string name="title_activity_maps">Mapa</string>
+    <string-array name="tipo">
+        <item>Acidente</item>
+        <item>Obras</item>
+        <item>Saneamento</item>
+    </string-array>
+</resources>

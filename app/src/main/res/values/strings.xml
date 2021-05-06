@@ -1,21 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">CitizenCity</string>
-    <string name="add_word">add_word</string>
-    <string name="spf" translatable="false">Shared Preferences File</string>
+    <string name="add_Nota">Add a note</string>
     <string name="id_sh" translatable="false">id</string>
-    <string name="add_Nota">Add city</string>
-    <string name="empty_not_saved">Nota vazia: não inserida</string>
-    <string name="vazio">Report não inserido</string>
-    <string name="saved">Guardado</string>
-    <string name="insertnota">Insira Nota</string>
-    <string name="apagar_nota">"Apagar Nota "</string>
-    <string name="mensagem_apagar">Deseja apagar esta nota ?</string>
-    <string name="sim">sim</string>
-    <string name="nao">nao</string>
+    <string name="empty_not_saved">Empty note: not inserted</string>
+    <string name="insertnota">Insert your note</string>
+    <string name="apagar_nota">Delete Note</string>
+    <string name="mensagem_apagar">Do you wish to delete this note ?</string>
+    <string name="sim">Yes</string>
+    <string name="nao">No</string>
     <string name="title_activity_maps">Map</string>
+    <string name="vazio">Report not inserted</string>
+    <string name="saved">Saved</string>
+    <string name="spf">Shared Preferences File</string>
+    <string name="titulo">Title</string>
+    <string name="remember">Remember me</string>
+    <string name="descricao">Description</string>
+    <string name="utilizador">User</string>
+    <string name="pass">Password</string>
+    <string name="entrar">Login</string>
+    <string name="notas">Notes</string>
+    <string name="acoes">Actions</string>
+    <string name="select">Select image</string>
+    <string name="voltar">Back</string>
     <string-array name="tipo">
-        <item>Acidente</item>
-        <item>Obras</item>
-        <item>Saneamento</item>
+        <item>Acident</item>
+        <item>Construction</item>
+        <item>Fire</item>
     </string-array>
 </resources>

@@ -26,7 +26,7 @@
         android:layout_height="40dp"
         android:layout_marginBottom="42dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/utilizador"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
         android:layout_width="231dp"
         android:layout_height="40dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/pass"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,13 +49,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.55" />
 
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remember"
+        android:id="@+id/lembrar"
+        tools:layout_editor_absoluteX="286dp"
+        tools:layout_editor_absoluteY="428dp" />
+
     <Button
         android:id="@+id/btn_log_in"
         android:layout_width="232dp"
         android:layout_height="56dp"
         android:background="#8BC34A"
         android:foreground="?android:attr/selectableItemBackground"
-        android:text="Entrar"
+        android:text="@string/entrar"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
@@ -73,7 +81,7 @@
         android:layout_height="59dp"
         android:background="#FFFFFF"
         android:foreground="?android:attr/selectableItemBackground"
-        android:text="Notas"
+        android:text="@string/notas"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
