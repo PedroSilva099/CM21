@@ -38,6 +38,8 @@
         <activity android:name=".AddNota" />
         <activity android:name=".Editar" />
         <activity android:name=".report.AddReport" />
+        <activity android:name=".SensorLuz" />
+        <activity android:name=".ImagePreview" />
         <activity
             android:name=".splash.ActivitysplashArt"
             android:noHistory="true"

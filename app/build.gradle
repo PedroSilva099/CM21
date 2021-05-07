@@ -45,6 +45,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
@@ -68,7 +70,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.lifecycleVersion"
+    //Sensores
 
+    implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
     // Kotlin components
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"

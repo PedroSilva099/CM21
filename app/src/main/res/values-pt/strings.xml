@@ -9,9 +9,14 @@
     <string name="vazio">Problema não inserido</string>
     <string name="saved">Guardado</string>
     <string name="titulo">Titulo</string>
+    <string name="sensorlight">Sensor de luz</string>
+    <string name="remember">Lembrar me</string>
     <string name="descricao">Descrição</string>
+    <string name="luz">Luz</string>
+    <string name="sucess">Login Efetuado</string>
     <string name="utilizador">Utilizador</string>
     <string name="pass">Palavra-Passe</string>
+    <string name="userid">userid</string>
     <string name="entrar">Entrar</string>
     <string name="notas">Notas</string>
     <string name="acoes">Ações</string>
@@ -20,7 +25,10 @@
     <string name="mensagem_apagar">Deseja apagar esta nota ?</string>
     <string name="sim">sim</string>
     <string name="nao">nao</string>
-    <string name="title_activity_maps">Mapa</string>
+    <string name="all">Todos</string>
+    <string name="acident">Acidente</string>
+    <string name="construction">Obras</string>
+    <string name="fire">Incendio</string>
     <string-array name="tipo">
         <item>Acidente</item>
         <item>Obras</item>

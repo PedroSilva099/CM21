@@ -8,6 +8,8 @@
     <string name="apagar_nota">Delete Note</string>
     <string name="mensagem_apagar">Do you wish to delete this note ?</string>
     <string name="sim">Yes</string>
+    <string name="sensorlight">Light Sensor</string>
+    <string name="luz">Light</string>
     <string name="nao">No</string>
     <string name="title_activity_maps">Map</string>
     <string name="vazio">Report not inserted</string>
@@ -17,12 +19,18 @@
     <string name="remember">Remember me</string>
     <string name="descricao">Description</string>
     <string name="utilizador">User</string>
+    <string name="userid">userid</string>
     <string name="pass">Password</string>
     <string name="entrar">Login</string>
     <string name="notas">Notes</string>
     <string name="acoes">Actions</string>
     <string name="select">Select image</string>
     <string name="voltar">Back</string>
+    <string name="sucess">Logged in</string>
+    <string name="acident">Acident</string>
+    <string name="all">All</string>
+    <string name="construction">Construction</string>
+    <string name="fire">Fire</string>
     <string-array name="tipo">
         <item>Acident</item>
         <item>Construction</item>

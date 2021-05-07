@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +25,7 @@ class MainLogin : AppCompatActivity() {
 
     private lateinit var user: EditText
     private lateinit var pass: EditText
+    private lateinit var check: CheckBox
     private lateinit var sharedPreferences: SharedPreferences
 
 
@@ -37,6 +39,8 @@ class MainLogin : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
         val button2 = findViewById<Button>(R.id.btn_log_in)
         button2.setOnClickListener{
             login()
@@ -45,9 +49,26 @@ class MainLogin : AppCompatActivity() {
 
         }
 
+        val button3 = findViewById<Button>(R.id.btn_light)
+        button3.setOnClickListener{
+            val intent = Intent(this, SensorLuz::class.java)
+            startActivity(intent)
+        }
+
+        val sharedPreferences = getSharedPreferences(getString(R.string.spf), Context.MODE_PRIVATE)
+        val checkLogin = sharedPreferences.getBoolean(getString(R.string.remember),false)
+
+        if (checkLogin) {
+            val intent = Intent(this, MapsActivity::class.java)
+            Toast.makeText(this@MainLogin, getString(R.string.sucess), Toast.LENGTH_LONG).show()
+            startActivity(intent)
+            finish()
+
+        }
+
         user = findViewById(R.id.username)
         pass = findViewById(R.id.password)
-
+        check = findViewById(R.id.checkBoxRememberMe)
 
 
     }
@@ -55,6 +76,7 @@ class MainLogin : AppCompatActivity() {
     fun login() {
         val username =  user.text.toString()
         val password = pass.text.toString()
+        val checkbox = check
 
         if(username.isNotEmpty() && password.isNotEmpty()){
 
@@ -72,14 +94,18 @@ class MainLogin : AppCompatActivity() {
                         if (safe.status == true ) {
                             val sharedPreferences = getSharedPreferences(getString(R.string.spf), Context.MODE_PRIVATE)
                             with(sharedPreferences.edit()) {
+                                putString(R.string.utilizador.toString(), username)
+                                putInt(R.string.userid.toString(),response.body()!!.id)
+                                putBoolean(getString(R.string.remember),checkbox.isChecked)
                                 putInt(R.string.id_sh.toString(), safe.id)
                                 commit()
-                                finish()
+
 
                             }
                             val intent = Intent(this@MainLogin, MapsActivity::class.java)
                             intent.putExtra("id", safe.id)
                             startActivity(intent)
+                            finish()
                         }
 
                     }
